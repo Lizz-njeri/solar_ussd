@@ -19,8 +19,10 @@ def ussd_callback():
     sms_phone_number.append(phone_number)
     sms = africastalking.SMS
 
+    sender="AFTKNG"
+
     if text == "":
-        response = "CON Welcome to Clean Energy Marketplace\n"
+        response = "CON Welcome to Sola Marketplace\n"
         response += "1. Buy Solar Panels\n"
         response += "2. Buy Solar Water Heater\n"
         response += "3. Buy Solar Battery\n"
@@ -39,22 +41,22 @@ def ussd_callback():
     # Buy Solar Panel
     elif text == "1*1":
         response = "CON You selected 100W Solar Panel for KES 5,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "1*2":
         response = "CON You selected 300W Solar Panel for KES 15,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "1*3":
         response = "CON You selected 500W Solar Panel for KES 25,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "1*4":
         response = "CON You selected 1000W Solar Panel for KES 40,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "1*5":
@@ -75,17 +77,17 @@ def ussd_callback():
 
     elif text == "2*1":
         response = "CON You selected 100 Liters Solar Water Heater for KES 20,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "2*2":
         response = "CON You selected 200 Liters Solar Water Heater for KES 35,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "2*3":
         response = "CON You selected 300 Liters Solar Water Heater for KES 50,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "2*4":
@@ -105,17 +107,17 @@ def ussd_callback():
 
     elif text == "3*1":
         response = "CON You selected 100Ah Solar Battery for KES 10,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "3*2":
         response = "CON You selected 200Ah Solar Battery for KES 20,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "3*3":
         response = "CON You selected 300Ah Solar Battery for KES 30,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "3*4":
@@ -135,17 +137,17 @@ def ussd_callback():
 
     elif text == "4*1":
         response = "CON You selected 1.5 kVA Inverter for KES 12,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "4*2":
         response = "CON You selected 3 kVA Inverter for KES 25,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "4*3":
         response = "CON You selected 5 kVA Inverter for KES 40,000\n"
-        response += "1. Buy Now\n"
+        response += "1. Order Now\n"
         response += "2. Back to Menu\n"
 
     elif text == "4*4":
@@ -167,12 +169,14 @@ def ussd_callback():
     elif text == "5*2":
         response = "END You will receive an SMS with seller contacts shortly."
         # Optionally, send SMS using Africa's Talking SMS API
-        sms.send("Seller contacts: +254700000000, +254711111111", sms_phone_number)
+        sms.send("Seller contacts: +254700000000, +254711111111", sms_phone_number, sender)
     
     # Buy Now Confirmation
     elif text.endswith("*1"):
         response = "END Thank you for your purchase! Your order has been placed and a seller will contact you shortly."
         # You can also add a feature to send an SMS or make an API call here to confirm the purchase.
+        message ="Your order has been received and is being processed."
+        sms.send(message, sms_phone_number, sender)
     
     else:
         response = "END Invalid input. Please try again."
